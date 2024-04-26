@@ -67,12 +67,16 @@ def twofiletest1(request):
     print(request.POST['q1'])
     print(request.POST['q2'])
 
+    result = None  # Initialize result variable outside the if block
+
     if request.POST['q1'] != '' and request.POST['q2'] != '': 
         print("Got both the texts")
         result = fileSimilarity.findFileSimilarity(request.POST['q1'],request.POST['q2'])
-    result = round(result,2)    
-    print("Output>>>>>>>>>>>>>>>>>>>>!!!!!!!!",result)
-    return render(request, 'pc/doc_compare.html',{'result': result})
+        result = round(result, 2)    
+        print("Output>>>>>>>>>>>>>>>>>>>>!!!!!!!!", result)
+
+    return render(request, 'pc/doc_compare.html', {'result': result})
+
     
 
 #two text compare(.txt, .docx)
